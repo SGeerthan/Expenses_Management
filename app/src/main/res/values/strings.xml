@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Expenses Management</string>
+    <string name="tvAddExpense">My Expenses</string>
+    <string name="btnAddExpenses">Add Expenses</string>
+</resources>
