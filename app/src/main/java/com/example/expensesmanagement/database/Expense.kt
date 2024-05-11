@@ -6,10 +6,10 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "Expenses")
 data class Expense(
     var expense:String?,
-    var amount:Int?
+    var amount: Int
 ){
     @PrimaryKey(autoGenerate = true)
-    var id:Int?=null
+    var id:Int=0
 }
 
 

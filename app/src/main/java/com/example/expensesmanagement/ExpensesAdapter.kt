@@ -9,6 +9,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.expensesmanagement.ViewModel.ExpenesesDatas
 import com.example.expensesmanagement.database.Expense
 import com.example.expensesmanagement.database.ExpensesRepository
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class ExpensesAdapter(items:List<Expense>,repository: ExpensesRepository,viewModel: ExpenesesDatas): RecyclerView.Adapter<ExpensesViewHolder>() {
     var context:Context?=null
@@ -30,9 +34,22 @@ class ExpensesAdapter(items:List<Expense>,repository: ExpensesRepository,viewMod
     }
 
     override fun onBindViewHolder(holder: ExpensesViewHolder, position: Int) {
-        holder.tvExpenses.text = items.get(position).item
+        holder.cdExpense.text = items.get(position).expense
+        holder.tvAmount.text = items[position].amount.toString()
         holder.ivDelete.setOnClickListener{
-            val expenses = holder.tvExpenses.text
+            val isChecked = holder.cdExpense.isChecked
+            if(isChecked){
+                CoroutineScope(Dispatchers.IO).launch {
+                    repository.delete(items.get(position))
+                    val data = repository.getAllExpenses()
+                    withContext(Dispatchers.Main){
+                        viewModel.setData(data)
+                    }
+                }
+                Toast.makeText(context,"Expenses Deleted",Toast.LENGTH_LONG).show()
+            }else{
+                Toast.makeText(context,"Select the item to delete",Toast.LENGTH_LONG).show()
+            }
 
         }
     }

@@ -2,4 +2,13 @@
     <string name="app_name">Expenses Management</string>
     <string name="tvAddExpense">My Expenses</string>
     <string name="btnAddExpenses">Add Expenses</string>
+    <string name="alertTitle">Enter Expenses : </string>
+
+    <string name="total">View Total</string>
+    <string name="totalExpen">Total Expenses</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Expense">" Expenses\nManagement"</string>
+
+
 </resources>
